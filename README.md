@@ -1,1 +1,1 @@
-# A tool to reduce photo size for iPhone
+# A tool to reduce the size of photos and videos of iPhone
