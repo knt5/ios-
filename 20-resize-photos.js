@@ -1,8 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const spawn = require('child_process').spawn;
+const spawnSync = require('child_process').spawnSync;
 const execSync = require('child_process').execSync;
 const config = require('./config/config');
 const exists = require('./modules/exists');
+
+// Settings
+const maxProcess = 25;
 
 // Path
 const outDir = config.photoLibraryDir + '/resized';
@@ -42,11 +47,42 @@ if (existsSpecialJpgSettings) {
 }
 
 // Convert
-let count = 0;
-for (const line of fs.readFileSync(masterFilePath).toString().split('\n')) {
+const lines = fs.readFileSync(masterFilePath).toString().split('\n');
+let index = 0;
+let processCount = 0;
+runConvert();
+
+/**
+ * Change file date
+ */
+function touch(date, outputFilePath) {
+	execSync(`touch -ct "${date}" "${outputFilePath}"`);
+	execSync(`touch -mt "${date}" "${outputFilePath}"`);
+}
+
+/**
+ * Run convert
+ */
+function runConvert() {
+	if (processCount < maxProcess) {
+		convert(index);
+		index++;
+		console.log(`${index}/${lines.length}`);
+	}
+	if (index < lines.length) {
+		setTimeout(runConvert, 100);
+	}
+}
+
+/**
+ * Convert
+ */
+function convert(index) {
+	const line = lines[index];
+	
 	// Skip
 	if (line.length === 0) {
-		continue;
+		return;
 	}
 	
 	//======================================================
@@ -112,18 +148,24 @@ for (const line of fs.readFileSync(masterFilePath).toString().split('\n')) {
 	
 	// Convert
 	if (!copyOnly) {
-		execSync(`convert -resize ${resize} -quality ${quality} "${filePath}" "${outputFilePath}"`);
+		let commandOptions = [
+			'-resize', resize,
+			'-quality', quality,
+			filePath,
+			outputFilePath
+		];
+		
+		// Run convert
+		spawn('convert', commandOptions).on('exit', () => {
+			processCount--;
+			touch(date, outputFilePath);
+		});
+		
+		// Count process
+		processCount++;
 	} else {
 		// Just copy
 		execSync(`cp "${filePath}" "${outputFilePath}"`);
+		touch(date, outputFilePath);
 	}
-	
-	//======================================================
-	// Change file date
-	execSync(`touch -ct "${date}" "${outputFilePath}"`);
-	execSync(`touch -mt "${date}" "${outputFilePath}"`);
-	
-	//======================================================
-	// Count up
-	count++;
 }
