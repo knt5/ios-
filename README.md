@@ -1,4 +1,4 @@
-# A tool to reduce photos and videos size on iPhone
+# Tools to reduce photos and videos size on iPhone
 
 ## Installation
 
