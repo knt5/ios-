@@ -8,3 +8,6 @@ npm-debug.log*
 # App
 data/*
 !data/.gitkeep
+
+# Xcode
+UserInterfaceState.xcuserstate
