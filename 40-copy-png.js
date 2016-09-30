@@ -5,7 +5,7 @@ const config = require('./config/config');
 const exists = require('./modules/exists');
 
 // Path
-const outDir = config.photoLibraryDir + '/resized';
+const outDir = config.photoLibraryDir + '/Photos';
 const masterFilePath = config.workDir + '/master-png.txt'
 const excludedFilesFilePath = config.photoLibraryDir + '/config/exclude.txt';
 

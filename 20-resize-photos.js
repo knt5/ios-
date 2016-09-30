@@ -10,7 +10,7 @@ const exists = require('./modules/exists');
 const maxProcess = 25;
 
 // Path
-const outDir = config.photoLibraryDir + '/resized';
+const outDir = config.photoLibraryDir + '/Photos';
 const copyOnlyListFilePath = config.photoLibraryDir + '/config/copy-only.txt';
 const specialJpgSettingsFilePath = config.photoLibraryDir + '/config/special-jpg.txt';
 const masterFilePath = config.workDir + '/master-jpg.txt'

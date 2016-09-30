@@ -5,7 +5,7 @@ const config = require('./config/config');
 const exists = require('./modules/exists');
 
 // Path
-const outDir = config.photoLibraryDir + '/resized';
+const outDir = config.photoLibraryDir + '/Photos';
 const copyOnlyListFilePath = config.photoLibraryDir + '/config/copy-only.txt';
 const specialVideoSettingsFilePath = config.photoLibraryDir + '/config/special-video.txt';
 const masterFilePath = config.workDir + '/master-video.txt'
