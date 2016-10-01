@@ -38,7 +38,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-OK-Mbu">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-OK-Mbu">
+                                <frame key="frameInset" minX="16" minY="288" width="288" height="47"/>
                                 <color key="backgroundColor" red="1" green="0.49059875850075363" blue="0.31545915397533575" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="ktI-V1-9lW"/>
@@ -51,23 +52,35 @@
                                     <action selector="touchDeleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mdv-Ak-VZd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pty-Rh-joy">
+                                <frame key="frameInset" minX="16" minY="189" width="288" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="VM0-BY-Z4J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Pty-Rh-joy" secondAttribute="trailing" constant="16" id="GRM-1a-YuN"/>
                             <constraint firstItem="bew-eb-ZO3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="I84-53-lYF"/>
                             <constraint firstAttribute="trailing" secondItem="1tc-OK-Mbu" secondAttribute="trailing" constant="16" id="J55-fj-lr6"/>
                             <constraint firstItem="bew-eb-ZO3" firstAttribute="top" secondItem="0wZ-G3-zTv" secondAttribute="bottom" constant="21" id="OnO-dv-ZsR"/>
+                            <constraint firstItem="Pty-Rh-joy" firstAttribute="top" secondItem="bew-eb-ZO3" secondAttribute="bottom" constant="8" id="SZH-kR-yOq"/>
                             <constraint firstItem="0wZ-G3-zTv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="55" id="TTo-rR-Joq"/>
                             <constraint firstItem="0wZ-G3-zTv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="WVd-7t-lOs"/>
                             <constraint firstAttribute="trailing" secondItem="bew-eb-ZO3" secondAttribute="trailing" constant="16" id="d8w-RG-diE"/>
                             <constraint firstAttribute="trailing" secondItem="0wZ-G3-zTv" secondAttribute="trailing" constant="16" id="g6e-AG-DnA"/>
                             <constraint firstItem="1tc-OK-Mbu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="hr8-vB-5iP"/>
-                            <constraint firstItem="1tc-OK-Mbu" firstAttribute="top" secondItem="bew-eb-ZO3" secondAttribute="bottom" constant="31" id="y9m-Vn-fmj"/>
+                            <constraint firstItem="Pty-Rh-joy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="uJo-hC-O0h"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="copyButton" destination="0wZ-G3-zTv" id="3wP-M9-qCE"/>
                         <outlet property="deleteButton" destination="1tc-OK-Mbu" id="WLm-bP-eIj"/>
+                        <outlet property="messageLabel" destination="Pty-Rh-joy" id="Fwo-2d-UUG"/>
                         <outlet property="progressLabel" destination="bew-eb-ZO3" id="MLh-ka-xDB"/>
                     </connections>
                 </viewController>

@@ -12,6 +12,7 @@ import Photos
 class ViewController: UIViewController {
 	@IBOutlet weak var copyButton: UIButton!
 	@IBOutlet weak var progressLabel: UILabel!
+	@IBOutlet weak var messageLabel: UILabel!
 	@IBOutlet weak var deleteButton: UIButton!
 	
 	private let startText: String = "Copy to Photos"
@@ -85,6 +86,7 @@ class ViewController: UIViewController {
 		
 		DispatchQueue.main.async {
 			self.progressLabel.text = String(index + 1) + " / " + String(names.count)
+			self.messageLabel.text = fileName
 		}
 
 		PHPhotoLibrary.shared().performChanges({
@@ -137,6 +139,7 @@ class ViewController: UIViewController {
 	private func stop() {
 		DispatchQueue.main.async {
 			self.copyButton.setTitle(self.startText, for: UIControlState.normal)
+			self.messageLabel.text = ""
 		}
 		isCopying = false
 	}
