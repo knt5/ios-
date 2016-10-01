@@ -15,35 +15,65 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wZ-G3-zTv">
-                                <frame key="frameInset" minX="16" minY="75" width="343" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wZ-G3-zTv">
                                 <color key="backgroundColor" red="0.34605456490349995" green="0.5587243680632128" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="EfB-Sb-4OI"/>
+                                </constraints>
                                 <state key="normal" title="Copy to Photos">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchCopyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LQN-RH-ugO"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bew-eb-ZO3">
-                                <frame key="frameInset" minX="16" minY="143" width="343" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bew-eb-ZO3">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="Crg-W7-LpH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-OK-Mbu">
+                                <color key="backgroundColor" red="1" green="0.49059875850075363" blue="0.31545915397533575" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="ktI-V1-9lW"/>
+                                </constraints>
+                                <state key="normal" title="Delete all from Photos">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCopyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OBl-SQ-ixL"/>
+                                    <action selector="touchDeleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mdv-Ak-VZd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bew-eb-ZO3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="I84-53-lYF"/>
+                            <constraint firstAttribute="trailing" secondItem="1tc-OK-Mbu" secondAttribute="trailing" constant="16" id="J55-fj-lr6"/>
+                            <constraint firstItem="bew-eb-ZO3" firstAttribute="top" secondItem="0wZ-G3-zTv" secondAttribute="bottom" constant="21" id="OnO-dv-ZsR"/>
+                            <constraint firstItem="0wZ-G3-zTv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="55" id="TTo-rR-Joq"/>
+                            <constraint firstItem="0wZ-G3-zTv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="WVd-7t-lOs"/>
+                            <constraint firstAttribute="trailing" secondItem="bew-eb-ZO3" secondAttribute="trailing" constant="16" id="d8w-RG-diE"/>
+                            <constraint firstAttribute="trailing" secondItem="0wZ-G3-zTv" secondAttribute="trailing" constant="16" id="g6e-AG-DnA"/>
+                            <constraint firstItem="1tc-OK-Mbu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="hr8-vB-5iP"/>
+                            <constraint firstItem="1tc-OK-Mbu" firstAttribute="top" secondItem="bew-eb-ZO3" secondAttribute="bottom" constant="31" id="y9m-Vn-fmj"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="copyButton" destination="0wZ-G3-zTv" id="3wP-M9-qCE"/>
+                        <outlet property="deleteButton" destination="1tc-OK-Mbu" id="WLm-bP-eIj"/>
                         <outlet property="progressLabel" destination="bew-eb-ZO3" id="MLh-ka-xDB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="135" y="138.38028169014083"/>
         </scene>
     </scenes>
 </document>
