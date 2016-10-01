@@ -3,7 +3,7 @@
 //  PhotoCopyTests
 //
 //  Created by apple on 2016/09/30.
-//  Copyright © 2016年 Kenta Motomura. All rights reserved.
+//  Copyright © 2016 Kenta Motomura. All rights reserved.
 //
 
 import XCTest
