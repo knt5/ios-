@@ -21,6 +21,7 @@ class ViewController: UIViewController {
 	private var isCopying: Bool = false
 	private var directory: String = ""
 	private var assetCollectionPlaceholder: PHObjectPlaceholder!
+	private var stopSignal: Bool = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -71,34 +72,48 @@ class ViewController: UIViewController {
 		return collectionFetchResult.firstObject
 	}
 
-	private func addAsset(url: NSURL, to album: PHAssetCollection) {
-		let suffix: String = url.pathExtension!.lowercased()
-		
-		do {
-			try PHPhotoLibrary.shared().performChangesAndWait({
-				var creationRequest: PHAssetChangeRequest!
-				
-				if (suffix == "jpg" || suffix == "png") {
-					creationRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url as URL)!
-				} else if (suffix == "mp4") {
-					creationRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url as URL)!
-				} else {
-					NSLog("Error: unknown extension: " + suffix)
-					return
-				}
-				
-				// Request editing the album.
-				guard let assetRequest = PHAssetCollectionChangeRequest(for: album)
-					else { return }
-				
-				// Get a placeholder for the new asset and add it to the album editing request.
-				assetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
-			})
-
-		} catch {
-			NSLog("Error: cannot add image")
+	private func addAsset(names: Array<String>, index: Int, to album: PHAssetCollection) {
+		if (stopSignal || index >= names.count) {
+			stop()
 			return
 		}
+		
+		let fileName: String = names[index]
+		let filePath: String = directory + "/" + fileName
+		let fileUrl: NSURL = NSURL(string: filePath)!
+		let suffix: String = fileUrl.pathExtension!.lowercased()
+		
+		DispatchQueue.main.async {
+			self.progressLabel.text = String(index + 1) + " / " + String(names.count)
+		}
+
+		PHPhotoLibrary.shared().performChanges({
+			var creationRequest: PHAssetChangeRequest!
+			
+			// Add asset
+			if (suffix == "jpg" || suffix == "png") {
+				creationRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: fileUrl as URL)!
+			} else if (suffix == "mp4") {
+				creationRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileUrl as URL)!
+			} else {
+				NSLog("Error: unknown extension: " + suffix)
+				return
+			}
+			
+			// Request editing the album.
+			guard let assetRequest = PHAssetCollectionChangeRequest(for: album)
+				else { return }
+			
+			// Get a placeholder for the new asset and add it to the album editing request.
+			assetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
+			
+		}, completionHandler: { (success, error) -> Void in
+			if (!success) {
+				NSLog("Error: cannot save asset: \(error)")
+			} else {
+				self.addAsset(names: names, index: index + 1, to: album)
+			}
+		})
 	}
 	
 	private func removeAllAssets(from album: PHAssetCollection) {
@@ -118,11 +133,20 @@ class ViewController: UIViewController {
 			return
 		}
 	}
+	
+	private func stop() {
+		DispatchQueue.main.async {
+			self.copyButton.setTitle(self.startText, for: UIControlState.normal)
+		}
+		isCopying = false
+	}
 
 	@IBAction func touchCopyButton(_ sender: AnyObject) {
 		if (!isCopying) {
-			//=======================================================
 			// Start copying
+			
+			// Reset
+			stopSignal = false
 			
 			// Disable button
 			copyButton.setTitle(stopText, for: UIControlState.normal)
@@ -130,29 +154,21 @@ class ViewController: UIViewController {
 			
 			// Get file list
 			let fileNames: Array<String> = getFiles()
-			fileNames.forEach {
-				let fileName: String = $0
-				let filePath: String = directory + "/" + fileName
-				let fileUrl: NSURL = NSURL(string: filePath)!
-				let album: PHAssetCollection? = getAlbum()
-				
-				if (album == nil) {
-					return
-				}
-				
-				addAsset(url: fileUrl, to: album!)
-				
-				progressLabel.text = fileName
+			
+			// Get album
+			let album: PHAssetCollection? = getAlbum()
+			
+			// Start to add assets to album
+			if (album != nil && fileNames.count > 0) {
+				addAsset(names: fileNames, index: 0, to: album!)
+			} else {
+				// Stop
+				stop()
 			}
 			
-			copyButton.setTitle(startText, for: UIControlState.normal)
-			isCopying = false
 		} else {
-			//=======================================================
 			// Stop copying
-			
-			copyButton.setTitle(startText, for: UIControlState.normal)
-			isCopying = false
+			stopSignal = true
 		}
 	}
 	
