@@ -38,8 +38,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-OK-Mbu">
-                                <frame key="frameInset" minX="16" minY="288" width="288" height="47"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-OK-Mbu">
                                 <color key="backgroundColor" red="1" green="0.49059875850075363" blue="0.31545915397533575" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="ktI-V1-9lW"/>
@@ -52,8 +51,7 @@
                                     <action selector="touchDeleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mdv-Ak-VZd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pty-Rh-joy">
-                                <frame key="frameInset" minX="16" minY="189" width="288" height="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pty-Rh-joy">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="VM0-BY-Z4J"/>
                                 </constraints>
@@ -74,6 +72,7 @@
                             <constraint firstAttribute="trailing" secondItem="bew-eb-ZO3" secondAttribute="trailing" constant="16" id="d8w-RG-diE"/>
                             <constraint firstAttribute="trailing" secondItem="0wZ-G3-zTv" secondAttribute="trailing" constant="16" id="g6e-AG-DnA"/>
                             <constraint firstItem="1tc-OK-Mbu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="hr8-vB-5iP"/>
+                            <constraint firstItem="1tc-OK-Mbu" firstAttribute="top" secondItem="Pty-Rh-joy" secondAttribute="bottom" constant="52" id="qqV-9N-PSz"/>
                             <constraint firstItem="Pty-Rh-joy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="uJo-hC-O0h"/>
                         </constraints>
                     </view>
