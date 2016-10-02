@@ -47,7 +47,6 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchCopyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OBl-SQ-ixL"/>
                                     <action selector="touchDeleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mdv-Ak-VZd"/>
                                 </connections>
                             </button>
