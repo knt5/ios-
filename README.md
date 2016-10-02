@@ -17,8 +17,6 @@ brew install ffmpeg
 
 ### Convert photos and videos for iPhone
 
-This tools generate JPEG, PNG and MP4 files. (No MOV)
-
 ```
 # Make file list
 node 10-make-file-list.js
@@ -33,14 +31,16 @@ node 10-make-file-list.js
 40-copy-png.js
 ```
 
+The tools generate JPEG, PNG and MP4 files.
+
 The main configuration file is ```config/config.js```. Change the ```photo-library``` path before using the tools.
 
-The ```photo-library``` directory has to have the following directories at default.
+The ```photo-library``` directory has to have the following directories.
 
 ```
-~/0/photo/photo-library/
+~/0/photo/photo-library/    <- The photo-library path at default
  |- config/    <- Extra configuration files
- |- master/    <- Photos and videos master data
+ |- master/    <- Master data of photos and videos
 ```
 
 And the tools make ```Photos``` directory and save all photos and videos to it.
@@ -63,7 +63,7 @@ Extra configuration files:
      |- special-video.txt
 ```
 
-The ```copy-only.txt``` and ```exclude.txt``` files have just file list like the followings. Files in ```copy-only.txt``` will be copied but not be resized. Files in ```exclude.txt``` will not be copied.
+The ```copy-only.txt``` and ```exclude.txt``` files have just file list like the followings.
 
 ```
 /path/to/master/a.jpg
@@ -71,11 +71,36 @@ The ```copy-only.txt``` and ```exclude.txt``` files have just file list like the
 /path/to/master/c.png
 ```
 
+Files in ```copy-only.txt``` will be just copied but not be resized. Files in ```exclude.txt``` will not be copied.
+
 The ```special-jpg.txt``` is TSV and has 3 columns for:
 
 ```
-1: The new size to be resized with ImageMagick. ()
+1: The new size to be resized with ImageMagick.
 2: JPEG quality (1-100)
-3: 
+3: The part of directory path has files to be convert. Size and quality settings are applied to the files.
 ```
 
+Example of ```special-jpg.txt```:
+
+```
+50% 50	/a/
+x1080	60	/b/
+1440x1440	70	/c/
+50%	80	/d/
+```
+
+The ```special-video.txt``` is TSV and has 3 columns for:
+
+```
+1: Options for ffmpeg
+2: CRF for x264
+3: The part of directory path has files to be convert. Size and quality settings are applied to the files.
+```
+
+Example of ```special-video.txt```:
+
+```
+	28	/a/
+-vf "scale=trunc(iw/2):trunc(ih/2):flags=lanczos"	32	/b/
+```
