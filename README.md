@@ -33,18 +33,49 @@ node 10-make-file-list.js
 40-copy-png.js
 ```
 
-The main configuration file is ```config/config.js```. Change the ```photo-library``` path.
+The main configuration file is ```config/config.js```. Change the ```photo-library``` path before using the tools.
 
 The ```photo-library``` directory has to have the following directories at default.
 
 ```
 ~/0/photo/photo-library/
- |- config/
- |- master/
+ |- config/    <- Extra configuration files
+ |- master/    <- Photos and videos master data
 ```
 
-Extra configuration files (default):
+And the tools make ```Photos``` directory and save all photos and videos to it.
 
 ```
 ~/0/photo/photo-library/
+ |- config/
+ |- master/
+ |- Photos/    <- Output directory
 ```
+
+Extra configuration files:
+
+```
+~/0/photo/photo-library/
+ |- config/
+     |- copy-only.txt
+     |- exclude.txt
+     |- special-jpg.txt
+     |- special-video.txt
+```
+
+The ```copy-only.txt``` and ```exclude.txt``` files have just file list like the followings. Files in ```copy-only.txt``` will be copied but not be resized. Files in ```exclude.txt``` will not be copied.
+
+```
+/path/to/master/a.jpg
+/path/to/master/b.mp4
+/path/to/master/c.png
+```
+
+The ```special-jpg.txt``` is TSV and has 3 columns for:
+
+```
+1: The new size to be resized with ImageMagick. ()
+2: JPEG quality (1-100)
+3: 
+```
+
