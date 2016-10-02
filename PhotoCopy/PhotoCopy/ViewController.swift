@@ -20,13 +20,15 @@ class ViewController: UIViewController {
 	private let startText: String = "Copy to Photos"
 	private let stopText: String = "Stop"
 	private let albumName: String = "Photos"
+	private let assetsMaxCount: Int = 100
 	
 	// Class vars
 	private var isCopying: Bool = false
 	private var directory: String = ""
 	private var assetCollectionPlaceholder: PHObjectPlaceholder!
 	private var stopSignal: Bool = false
-	
+	private var assets: NSMutableArray = [] as NSMutableArray
+
 	//============================================================
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,6 +55,7 @@ class ViewController: UIViewController {
 			
 			// Reset
 			stopSignal = false
+			assets = [] as NSMutableArray
 			
 			// Disable button
 			copyButton.setTitle(stopText, for: UIControlState.normal)
@@ -140,7 +143,23 @@ class ViewController: UIViewController {
 	private func addAsset(names: Array<String>, index: Int, to album: PHAssetCollection) {
 		// Stop adding if finished or stop signal is enabled
 		if (stopSignal || index >= names.count) {
-			stop()
+			if (assets.count > 0) {
+				PHPhotoLibrary.shared().performChanges({
+					// Request editing the album
+					guard let assetRequest = PHAssetCollectionChangeRequest(for: album)
+						else { return }
+					
+					assetRequest.addAssets(self.assets as NSArray)
+					
+					}, completionHandler: { (success, error) -> Void in
+						if (!success) {
+							NSLog("Error: cannot add asset: \(error)")
+						}
+						self.stop()
+				})
+			} else {
+				stop()
+			}
 			return
 		}
 		
@@ -170,17 +189,25 @@ class ViewController: UIViewController {
 				return
 			}
 			
-			// Request editing the album
-			guard let assetRequest = PHAssetCollectionChangeRequest(for: album)
-				else { return }
+			// Add a placeholder for the new asset and add it to the album editing request
+			self.assets.add(creationRequest.placeholderForCreatedAsset!)
 			
-			// Get a placeholder for the new asset and add it to the album editing request
-			assetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
+			// Add assets
+			if (self.assets.count >= self.assetsMaxCount) {
+				// Request editing the album
+				guard let assetRequest = PHAssetCollectionChangeRequest(for: album)
+					else { return }
+				
+				assetRequest.addAssets(self.assets as NSArray)
+			}
 			
 		}, completionHandler: { (success, error) -> Void in
 			if (!success) {
-				NSLog("Error: cannot save asset: \(fileName): \(error)")
+				NSLog("Error: cannot add asset: \(fileName): \(error)")
 			}
+			
+			// Reset
+			self.assets = [] as NSMutableArray
 			
 			// Add the next asset
 			self.addAsset(names: names, index: index + 1, to: album)
