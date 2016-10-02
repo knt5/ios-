@@ -207,7 +207,9 @@ class ViewController: UIViewController {
 			}
 			
 			// Reset
-			self.assets = [] as NSMutableArray
+			if (self.assets.count >= self.assetsMaxCount) {
+				self.assets = [] as NSMutableArray
+			}
 			
 			// Add the next asset
 			self.addAsset(names: names, index: index + 1, to: album)
