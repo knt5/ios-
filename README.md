@@ -15,6 +15,8 @@ brew install ffmpeg
 
 ## Usage
 
+### Copy converted files
+
 ### Convert photos and videos for iPhone
 
 ```
@@ -78,7 +80,7 @@ The ```special-jpg.txt``` is TSV and has 3 columns for:
 ```
 1: The new size to be resized with ImageMagick.
 2: JPEG quality (1-100)
-3: The part of directory path has files to be convert. Size and quality settings are applied to the files.
+3: The part of directory path has files to be convert. Size and quality settings are applied to the files in the matched directory.
 ```
 
 Example of ```special-jpg.txt```:
@@ -95,7 +97,7 @@ The ```special-video.txt``` is TSV and has 3 columns for:
 ```
 1: Options for ffmpeg
 2: CRF for x264
-3: The part of directory path has files to be convert. Size and quality settings are applied to the files.
+3: The part of directory path has files to be convert. Settings are applied to the files in the matched directory.
 ```
 
 Example of ```special-video.txt```:
