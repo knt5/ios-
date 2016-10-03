@@ -101,8 +101,8 @@ The ```special-video.txt``` is TSV and has 3 columns for:
 Example of ```special-video.txt```:
 
 ```
-	28	/a/
--vf "scale=trunc(iw/2):trunc(ih/2):flags=lanczos"	32	/b/
+-vf "scale=trunc(iw/2):trunc(ih/2):flags=lanczos"	28	/a/
+	32	/b/
 ```
 
 ### Copy converted files to camera roll of iPhone
