@@ -107,6 +107,6 @@ Example of ```special-video.txt```:
 
 ### Copy converted files to camera roll of iPhone
 
-1. Install the iOS app "PhotoCopy" by Xcode. (```PhotoCopy/PhotoCopy.xcodeproj```)
+1. Install the iOS app "PhotoCopy" with Xcode. (```PhotoCopy/PhotoCopy.xcodeproj```)
 1. Add photo and video files as "documents" to PhotoCopy with iTunes.
 1. Open PhotoCopy and push "Copy to Photos" button.
