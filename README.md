@@ -109,7 +109,7 @@ Example of ```special-video.txt```:
 
 1. Install the iOS app "PhotoCopy" with Xcode. (```PhotoCopy/PhotoCopy.xcodeproj```)
 1. Add photo and video files as "documents" to PhotoCopy with iTunes.
-1. Open PhotoCopy and press "Copy to Photos" button.
+1. Open PhotoCopy app and press "Copy to Photos" button.
 
 ![screenshot 1](images/ss/1.png)
 ![screenshot 2](images/ss/2.png)
