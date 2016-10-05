@@ -21,7 +21,8 @@ brew install ffmpeg
 1. Add photo and video files as "documents" to PhotoCopy with iTunes.
 1. Open PhotoCopy and press "Copy to Photos" button.
 
-<img src="images/ss/1.png" alt="screenshot 1" style="width:100%; max-width:320px; box-shadow:0px 0px 3px 2px #666;">
+![screenshot 1](images/ss/1.png)
+![screenshot 2](images/ss/2.png)
 
 ### Convert photos and videos for iPhone
 
