@@ -15,15 +15,6 @@ brew install ffmpeg
 
 ## Usage
 
-### Copy converted image and video files to camera roll on iPhone
-
-1. Install the iOS app "PhotoCopy" with Xcode. (```PhotoCopy/PhotoCopy.xcodeproj```)
-1. Add photo and video files as "documents" to PhotoCopy with iTunes.
-1. Open PhotoCopy and press "Copy to Photos" button.
-
-![screenshot 1](images/ss/1.png)
-![screenshot 2](images/ss/2.png)
-
 ### Convert photos and videos for iPhone
 
 ```
@@ -113,3 +104,12 @@ Example of ```special-video.txt```:
 -vf "scale=trunc(iw/2):trunc(ih/2):flags=lanczos"	28	/a/
 	32	/b/
 ```
+
+### Copy converted image and video files to camera roll on iPhone
+
+1. Install the iOS app "PhotoCopy" with Xcode. (```PhotoCopy/PhotoCopy.xcodeproj```)
+1. Add photo and video files as "documents" to PhotoCopy with iTunes.
+1. Open PhotoCopy and press "Copy to Photos" button.
+
+![screenshot 1](images/ss/1.png)
+![screenshot 2](images/ss/2.png)
