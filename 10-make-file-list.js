@@ -13,7 +13,7 @@ execSync(`find "${masterDir}" -type f -print0 | \\
 	xargs -0 -n 1000 stat -f "%Sm	%N" -t "%Y%m%d%H%M.%S" | \\
 	grep -i -e ".*\\.jpg\\$" -e ".*\\.png\\$" -e ".*\\.mp4\\$" -e ".*\\.mov\\$" -e ".*\\.avi\\$" | \\
 	sort -k1 | \\
-	nl -b a -d "	" -n rz -w 9 -i 1 -v 1 \\
+	nl -v ${config.startNumber} -b a -d "	" -n rz -w 9 -i 1 \\
 	> "${outDir}/master.txt"`);
 
 // Grep
