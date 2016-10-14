@@ -17,6 +17,20 @@ execSync(`find "${masterDir}" -type f -print0 | \\
 	> "${outDir}/master.txt"`);
 
 // Grep
-execSync(`grep -i -e ".*\\.jpg\\$" "${outDir}/master.txt" > "${outDir}/master-jpg.txt"`);
-execSync(`grep -i -e ".*\\.png\\$" "${outDir}/master.txt" > "${outDir}/master-png.txt"`);
-execSync(`grep -i -e ".*\\.mp4\\$" -e ".*\\.mov\\$" -e ".*\\.avi\\$" "${outDir}/master.txt" > "${outDir}/master-video.txt"`);
+try {
+	execSync(`grep -i -e ".*\\.jpg\\$" "${outDir}/master.txt" > "${outDir}/master-jpg.txt"`);
+} catch(e) {
+	console.error('grep jpg return not 0');
+}
+
+try {
+	execSync(`grep -i -e ".*\\.png\\$" "${outDir}/master.txt" > "${outDir}/master-png.txt"`);
+} catch(e) {
+	console.error('grep png return not 0');
+}
+
+try {
+	execSync(`grep -i -e ".*\\.mp4\\$" -e ".*\\.mov\\$" -e ".*\\.avi\\$" "${outDir}/master.txt" > "${outDir}/master-video.txt"`);
+} catch(e) {
+	console.error('grep video return not 0');
+}
