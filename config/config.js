@@ -3,6 +3,6 @@ const cwd = process.cwd();
 
 module.exports = {
 	photoLibraryDir: home + '/0/photo/photo-library',
-	startNumber: 57921,
+	startNumber: 59940,
 	workDir: cwd + '/data'
 };
