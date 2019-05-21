@@ -58,7 +58,7 @@ class ViewController: UIViewController {
 			assets = [] as NSMutableArray
 			
 			// Disable button
-			copyButton.setTitle(stopText, for: UIControlState.normal)
+			copyButton.setTitle(stopText, for: UIControl.State.normal)
 			isCopying = true
 			
 			// Get file list
@@ -153,7 +153,7 @@ class ViewController: UIViewController {
 					
 					}, completionHandler: { (success, error) -> Void in
 						if (!success) {
-							NSLog("Error: cannot add asset: \(error)")
+							NSLog("Error: cannot add asset: \(String(describing: error))")
 						}
 						self.stop()
 				})
@@ -203,7 +203,7 @@ class ViewController: UIViewController {
 			
 		}, completionHandler: { (success, error) -> Void in
 			if (!success) {
-				NSLog("Error: cannot add asset: \(fileName): \(error)")
+				NSLog("Error: cannot add asset: \(fileName): \(String(describing: error))")
 			}
 			
 			// Reset
@@ -240,7 +240,7 @@ class ViewController: UIViewController {
 	// Stop copying and change status
 	private func stop() {
 		DispatchQueue.main.async {
-			self.copyButton.setTitle(self.startText, for: UIControlState.normal)
+			self.copyButton.setTitle(self.startText, for: UIControl.State.normal)
 			self.messageLabel.text = ""
 		}
 		isCopying = false
